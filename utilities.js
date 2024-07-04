@@ -13,13 +13,13 @@ function authenticateToken(req, res, next) {
   // This line checks if the token is not present. If there is no token,
   // it sends a 401 Unauthorized status code as the response,
   // indicating that the request cannot proceed because the client is not authenticated.
-  console.log(`access token: ${token}`);
+  // console.log(`access token: ${token}`);
   if (!token) return res.sendStatus(401);
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     // check for error, assign successfully verified user information to req.user
     if (err) return res.sendStatus(401);
-    console.log(user);
+    // console.log(user);
     req.user = user;
     next();
   });
